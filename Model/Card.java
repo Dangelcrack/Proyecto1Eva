@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Card {
     private int value;
+    // esto es una prueba de guardado
     private String suit;
 
     Card() {

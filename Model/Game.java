@@ -1,77 +1,116 @@
 package Model;
+
+import view.IO;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class Game {
-    private int turn;
-    private int type;
+    private String type;
     private Player[] players;
-    private Desk desk;
 
-    public int getType() {
-        return type;
+    public Game(int nplayers) {
+        if (nplayers <= 1) {
+            nplayers = 2;
+        }
+
+        this.players = new Player[nplayers];
+
+        // Lógica para agregar jugadores al juego
+        for (int i = 0; i < nplayers; i++) {
+            int j = i+1;
+            String playerName = IO.readString("Ingrese el nombre del Jugador " + j + ": ");
+            Player player = new Player(playerName);
+            this.players[i] = player;
+        }
     }
 
-    public Player firstPlayer() {
-        // Implementar lógica para obtener el primer jugador
-        return null;
+
+    public Card getCard(String string) {
+        Desk desk = new Desk(string);
+        if (desk != null) {
+            // Verificar si hay cartas en el mazo
+            if (desk.hasCards()) {
+                return desk.drawCard();
+            } else {
+                System.out.println("El mazo está vacío. No se pueden obtener más cartas.");
+                return null;
+            }
+        } else {
+            System.out.println("No se ha inicializado el mazo de cartas.");
+            return null;
+        }
     }
 
-    public void printResumePlayer(Player player) {
-        // Implementar lógica para imprimir el resumen del jugador
-    }
-
-    public Card getCard() {
-        // Implementar lógica para obtener una carta
-        return null;
-    }
 
     public Player[] calculateWinners() {
-        // Implementar lógica para calcular los ganadores
-        return null;
+        List<Player> winners = new ArrayList<>();
+        int maxPoints = 0;
+
+        for (Player player : players) {
+            // Calcular los puntos del jugador
+            float points = calculatePoints(player);
+
+            // Verificar si los puntos del jugador son válidos y superan al máximo actual
+            if (points > 0 && points <= 21) {
+                if (points > maxPoints) {
+                    // Nuevo máximo, actualiza la lista de ganadores
+                    maxPoints = (int) points;
+                    winners.clear();
+                    winners.add(player);
+                } else if (points == maxPoints) {
+                    // Empate, agrega a la lista de ganadores
+                    winners.add(player);
+                }
+            }
+        }
+
+        // Devolver la lista de ganadores como un array
+        return winners.toArray(new Player[0]);
     }
 
     public float calculatePoints(Player player) {
-        // Implementar lógica para calcular los puntos de un jugador
-        return 0.0f;
+        if (player != null) {
+            List<Card> cards = List.of(player.getCards());
+            int totalPoints = 0;
+            int numberOfAces = 0;
+
+            // Sumar los valores de las cartas
+            for (Card card : cards) {
+                totalPoints += card.getValue();
+                if (card.isAce()) {
+                    numberOfAces++;
+                }
+            }
+
+            // Ajustar la puntuación por los ases (si los hay)
+            while (numberOfAces > 0 && totalPoints > 21) {
+                totalPoints -= 10;
+                numberOfAces--;
+            }
+
+            return totalPoints;
+        } else {
+            System.out.println("Jugador nulo. No se pueden calcular los puntos.");
+            return 0.0f;
+        }
     }
 
-    public boolean hasFinishedPlayer(Player player) {
-        // Implementar lógica para verificar si un jugador ha terminado
+
+    public Player[] getPlayers() {
+        // Devuelve un array vacío si players es nulo
+        return Objects.requireNonNullElseGet(players, () -> new Player[0]);
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public boolean setDesk(Desk desk) {
+
         return false;
     }
 
-    public boolean updateCardsPlayer(Player player, Card card) {
-        // Implementar lógica para actualizar las cartas de un jugador
-        return false;
-    }
 
-    public Player getNextPlayer() {
-        // Implementar lógica para obtener el siguiente jugador
-        return null;
-    }
-
-    public boolean areAllPlayers() {
-        // Implementar lógica para verificar si todos los jugadores han jugado
-        return false;
-    }
-
-    public boolean isAlreadyPlayer(String namePlayer) {
-        // Implementar lógica para verificar si un jugador ya existe
-        return false;
-    }
-
-    public boolean addPlayer(Player player) {
-        // Implementar lógica para agregar un jugador
-        return false;
-    }
-
-    public Game() {
-        // Constructor por defecto
-    }
-
-    public Game(int type, int nPlayers) {
-        // Constructor con parámetros
-        this.type = type;
-        this.players = new Player[nPlayers];
-        this.desk = new Desk();
-        this.turn = 0;
-    }
 }

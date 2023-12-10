@@ -1,10 +1,10 @@
 import Utility.Controller;
-import view.IO;
+import view.UI;
 
 public class Main {
     public static void main(String[] args) {
-        String desk = IO.readString("Introduzca tipo de baraja: 'French' o 'Spanish': " );
-        int nplayers = IO.readInt("Introduzca numero de jugadores: ",1,4);
-        Controller.startApp(nplayers,desk);
+        String deck = UI.readString("Introduzca tipo de baraja: 'French' o 'Spanish': " );
+        int nplayers = UI.readInt("Introduzca numero de jugadores: ",1,4);
+        Controller.startApp(nplayers,deck);
     }
 }

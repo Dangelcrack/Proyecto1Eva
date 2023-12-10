@@ -2,7 +2,7 @@ package view;
 
 import java.util.Scanner;
 
-public class IO {
+public class UI {
     public static String readString(String msg){
         Scanner teclado = new Scanner(System.in);
         System.out.print(msg);

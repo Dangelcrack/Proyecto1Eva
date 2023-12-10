@@ -1,29 +1,28 @@
 package Model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class Desk {
+public class Deck {
     public String type;
     private List<Card> cards;
 
-    public Desk() {
+    public Deck() {
         // Constructor por defecto
     }
 
-    public Desk(String type) {
+    public Deck(String type) {
         this.type = type;
         if ("French".equals(type)) {
-            makeFrenchDesk();
+            makeFrenchDeck();
         } else if ("Spanish".equals(type)) {
-            makeSpanishDesk();
+            makeSpanishDeck();
         } else {
             System.out.println("Tipo de baraja no válido. Se creará una baraja francesa por defecto.");
-            makeFrenchDesk();
+            makeFrenchDeck();
         }
-        shuffleDesk();
+        shuffleDeck();
     }
 
     public Card[] getCards() {
@@ -42,11 +41,11 @@ public class Desk {
         this.cards = cards;
     }
 
-    public void shuffleDesk() {
+    public void shuffleDeck() {
         Collections.shuffle(cards);
     }
 
-    private void makeFrenchDesk() {
+    private void makeFrenchDeck() {
         cards = new ArrayList<>();
 
         String[] suits = {"hearts", "diamonds", "clubs", "spades"};
@@ -69,7 +68,7 @@ public class Desk {
         }
     }
 
-    private void makeSpanishDesk() {
+    private void makeSpanishDeck() {
         cards = new ArrayList<>();
 
         String[] suits = {"cups", "coins", "swords", "bastos"};

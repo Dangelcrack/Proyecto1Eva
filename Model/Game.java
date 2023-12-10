@@ -1,6 +1,6 @@
 package Model;
 
-import view.IO;
+import view.UI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +22,7 @@ public class Game {
         // Lógica para agregar jugadores al juego
         for (int i = 0; i < nplayers; i++) {
             int j = i + 1;
-            String playerName = IO.readString("Ingrese el nombre del Jugador " + j + ": ");
+            String playerName = UI.readString("Ingrese el nombre del Jugador " + j + ": ");
             Player player = new Player(playerName);
             this.players[i] = player;
         }
@@ -52,11 +52,11 @@ public class Game {
 
 
     public Card getCard(String string) {
-        Desk desk = new Desk(string);
-        if (desk != null) {
+        Deck deck = new Deck(string);
+        if (deck != null) {
             // Verificar si hay cartas en el mazo
-            if (desk.hasCards()) {
-                return desk.drawCard();
+            if (deck.hasCards()) {
+                return deck.drawCard();
             } else {
                 System.out.println("El mazo está vacío. No se pueden obtener más cartas.");
                 return null;
@@ -70,7 +70,7 @@ public class Game {
     public static void displayRules() {
         System.out.println("Reglas del Blackjack:");
         System.out.println("1. El objetivo es conseguir una mano con un valor cercano a 21 sin pasarse.");
-        System.out.println("2. Cada carta numérica vale su valor, las figuras valen 10 y el As vale 1 y resta 10 puntos, es decir -9.");
+        System.out.println("2. Cada carta numérica vale su valor, las figuras valen 10 y el As vale 11.");
         System.out.println();
     }
 
@@ -115,7 +115,7 @@ public class Game {
 
             // Ajustar la puntuación por los ases (si los hay)
             while (numberOfAces > 0 && totalPoints > 21) {
-                totalPoints -= 10;
+                totalPoints += 10;
                 numberOfAces--;
             }
 
@@ -136,7 +136,7 @@ public class Game {
         return type;
     }
 
-    public boolean setDesk(Desk desk) {
+    public boolean setDeck(Deck deck) {
 
         return false;
     }

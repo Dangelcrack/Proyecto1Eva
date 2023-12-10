@@ -3,7 +3,7 @@ package Utility;
 import Model.Card;
 import Model.Game;
 import Model.Player;
-import view.IO;
+import view.UI;
 import view.Menu;
 
 import java.util.Arrays;
@@ -12,10 +12,10 @@ import static Model.Game.*;
 
 public class Controller {
     public static Game game;
-    public static IO io;
+    public static UI UI;
 
-    public Controller(Game game, IO io) {
-        Controller.io = io;
+    public Controller(Game game, UI UI) {
+        Controller.UI = UI;
         Controller.game = game;
     }
 

@@ -1,21 +1,21 @@
 package Test;
 
 import Model.Card;
-import Model.Desk;
+import Model.Deck;
 
 import java.util.Arrays;
 
-public class TestDesk {
+public class TestDeck {
     public static void main(String[] args) {
-        // Crear una instancia de la clase Desk
-        Desk desk = new Desk("French");
+        // Crear una instancia de la clase Deck
+        Deck desk = new Deck("French");
 
         // Imprimir información sobre la baraja
         System.out.println("Tipo de baraja: " + desk.getType());
         System.out.println("Cartas en la baraja: " + Arrays.toString(desk.getCards()));
 
         // Realizar algunas operaciones de prueba, por ejemplo, barajar y sacar una carta
-        desk.shuffleDesk();
+        desk.shuffleDeck();
         Card drawnCard = desk.drawCard();
 
         // Imprimir información después de barajar y sacar una carta

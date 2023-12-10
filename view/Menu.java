@@ -15,7 +15,7 @@ public class Menu {
         System.out.println("*********************************************");
         System.out.println("*********************************************");
         System.out.println();
-        return IO.readInt("Elija una opción: ",1,5);
+        return UI.readInt("Elija una opción: ",1,5);
     }
 
 }

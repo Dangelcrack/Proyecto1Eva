@@ -15,18 +15,32 @@ public class Game {
     public Game(int nplayers) {
         if (nplayers <= 1) {
             nplayers = 2;
-        }
+            this.players = new Player[nplayers];
 
-        this.players = new Player[nplayers];
+            // Lógica para agregar jugadores al juego
+            for (int i = 1; i < nplayers; i++) {
+                System.out.println("Se ha añadido el jugador 1  IA.");
+                int j = i + 1;
+                String playerName = UI.readString("Ingrese el nombre del Jugador " + j + ": ");
+                Player player = new Player(playerName);
+                Player IA = new Player("IA");
+                this.players[0] = IA;
+                this.players[i] = player;
+            }
 
-        // Lógica para agregar jugadores al juego
-        for (int i = 0; i < nplayers; i++) {
-            int j = i + 1;
-            String playerName = UI.readString("Ingrese el nombre del Jugador " + j + ": ");
-            Player player = new Player(playerName);
-            this.players[i] = player;
+        } else {
+            this.players = new Player[nplayers];
+
+            // Lógica para agregar jugadores al juego
+            for (int i = 0; i < nplayers; i++) {
+                int j = i + 1;
+                String playerName = UI.readString("Ingrese el nombre del Jugador " + j + ": ");
+                Player player = new Player(playerName);
+                this.players[i] = player;
+            }
         }
     }
+
 
     public static void play(String string) {
         System.out.println("Comienza la partida...");

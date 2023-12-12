@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Deck {
-    public String type;
+    private String type;
     private List<Card> cards;
 
     public Deck() {
@@ -57,7 +57,7 @@ public class Deck {
                 if ("J".equals(rank) || "Q".equals(rank) || "K".equals(rank)) {
                     value = 10;
                 } else if ("A".equals(rank)) {
-                    value = 1;  // O puedes elegir 11 dependiendo de las reglas de tu juego
+                    value = 11;  // O puedes elegir 11 dependiendo de las reglas de tu juego
                 } else {
                     value = Integer.parseInt(rank);
                 }

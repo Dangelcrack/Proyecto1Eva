@@ -7,6 +7,7 @@ import view.UI;
 import view.Menu;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 import static Model.Game.*;
 
@@ -29,9 +30,19 @@ public class Controller {
         Player[] players = game.getPlayers();
         for (Player player : players) {
             do {
-
-                option = Menu.mainMenu(player);
-                mainController(option, string, player);
+                if (!Objects.equals(player.getName(), "IA")) {
+                    option = Menu.mainMenu(player);
+                    mainController(option, string, player);
+                } else {
+                    //calculo los puntos antes de entrar en el loop
+                    int points = (int) game.calculatePoints(player);
+                    while (points <= 15) {
+                        mainController(3, string, player);
+                        //actualizo los puntos en el loop porque si no es infinito
+                        points = (int) game.calculatePoints(player);
+                    }
+                    option=5;
+                }
 
             } while (option != 5);
         }
@@ -53,14 +64,11 @@ public class Controller {
             case 3:
 
                 if (player != null) {  // Verificar si el jugador no es nulo
-                    System.out.println("Cartas para " + player.getName() + ":");
+                    System.out.println("Carta para " + player.getName() + ":");
                     for (int i = 0; i < 1; i++) {
                         Card drawnCard = game.getCard(string);
                         player.addCard(drawnCard);
                     }
-
-                    // Mostrar las cartas que tiene cada jugador después de recibir las cartas
-                    System.out.println(player.getName() + " tiene las siguientes cartas: " + Arrays.toString(player.getCards()));
                 } else {
                     System.out.println("Error: Se encontró un jugador nulo.");
                 }
@@ -80,8 +88,6 @@ public class Controller {
                 System.out.println();
                 System.out.println();
                 System.out.println();
-
-
                 break;
             default:
                 System.out.println("Opción incorrecta");

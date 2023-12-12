@@ -23,7 +23,7 @@ public class Player {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Player{name='").append(name).append("', cards=[");
+        sb.append("Player{name='").append(name).append("', cards=");
 
         for (Card card : cards) {
             sb.append(card).append(", ");
@@ -34,7 +34,7 @@ public class Player {
             sb.setLength(sb.length() - 2);
         }
 
-        sb.append("]}");
+        sb.append("}");
 
         return sb.toString();
     }

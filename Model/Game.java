@@ -18,15 +18,12 @@ public class Game {
             this.players = new Player[nplayers];
 
             // Lógica para agregar jugadores al juego
-            for (int i = 1; i < nplayers; i++) {
-                System.out.println("Se ha añadido el jugador 1  IA.");
-                int j = i + 1;
-                String playerName = UI.readString("Ingrese el nombre del Jugador " + j + ": ");
-                Player player = new Player(playerName);
-                Player IA = new Player("IA");
-                this.players[0] = IA;
-                this.players[i] = player;
-            }
+            String playerName = UI.readString("Ingrese el nombre del Jugador 1: ");
+            Player player = new Player(playerName);
+            Player IA = new Player("IA");
+            this.players[0] = player;
+            this.players[1] = IA;
+            System.out.println("Se ha añadido el jugador 1  IA.");
 
         } else {
             this.players = new Player[nplayers];

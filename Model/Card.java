@@ -98,6 +98,6 @@ public class Card {
         return stringValue != null && stringValue.length() == 2;
     }
     public boolean isAce() {
-        return "A".equals(String.valueOf(value)) || value == 1;
+        return "A".equals(suit) || value == 1;
     }
 }

@@ -6,15 +6,14 @@ import Model.Player;
 import view.Menu;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-public class Controller {
+public class GameController {
 
     private static Player[] players;
 
-    public Controller() {
+    public GameController() {
     }
 
     public static void startApp(int nplayers, String string) {

@@ -62,7 +62,7 @@ public class Deck {
                     value = Integer.parseInt(rank);
                 }
 
-                Card card = new Card(value, suit);
+                Card card = new Card(value, suit,rank);
                 cards.add(card);
             }
         }
@@ -76,7 +76,8 @@ public class Deck {
 
         for (String suit : suits) {
             for (int rank : ranks) {
-                Card card = new Card(rank, suit);
+                String s = String.valueOf(rank);
+                Card card = new Card(rank, suit,s);
                 cards.add(card);
             }
         }

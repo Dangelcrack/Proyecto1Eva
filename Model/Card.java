@@ -6,14 +6,13 @@ public class Card {
     private int value;
     // esto es una prueba de guardado
     private String suit;
+    private String rank;
 
 
-    public Card(int value, String suit) {
+    public Card(int value, String suit,String rank) {
         this.value = value;
         this.suit = suit;
-    }
-
-    public Card(String s) {
+        this.rank = rank;
     }
 
     public int getValue() {
@@ -49,9 +48,9 @@ public class Card {
 
         // Añade el valor y el ícono en el medio según la suit
         if (isNumericValue()) {
-            sb.append("│").append(value).append("       │\n");
+            sb.append("│").append(getValueLetter(rank)).append("       │\n");
         } else {
-            sb.append("│ ").append(value).append("       │\n");
+            sb.append("│ ").append(getValueLetter(rank)).append("       │\n");
         }
 
         // Añade el ícono en el medio según la suit
@@ -59,9 +58,9 @@ public class Card {
 
         // Añade el valor invertido
         if (isNumericValue()) {
-            sb.append("│      ").append(value).append(" │\n");
+            sb.append("│      ").append(getValueLetter(rank)).append(" │\n");
         } else {
-            sb.append("│       ").append(value).append(" │\n");
+            sb.append("│       ").append(getValueLetter(rank)).append(" │\n");
         }
 
         // Añade la parte inferior de la carta
@@ -88,6 +87,13 @@ public class Card {
         }
 
         return icon;
+    }
+    private String getValueLetter(String rank) {
+        return switch (rank) {
+            case "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" ->rank;
+            case "J", "Q", "K","A" -> rank+" ";
+            default -> ("Valor inesperado para suit: " + rank);
+        };
     }
 
     // Método auxiliar para verificar si el valor es numérico

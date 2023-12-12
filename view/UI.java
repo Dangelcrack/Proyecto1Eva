@@ -41,14 +41,17 @@ public class UI {
     }
 
     public static int readInt(String msg, int min, int max) {
-        int input;
+        int input = 0;
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.print(msg);
-            input = scanner.nextInt();
+            try{
+                input = scanner.nextInt();
+            }catch (Exception e){
+                scanner.next();
+            }
             if (input < min || input > max) {
                 System.out.println("Por favor, ingresa un número válido.");
-                scanner.next(); // Consumir la entrada no válida
             }
 
         } while (input < min || input > max);

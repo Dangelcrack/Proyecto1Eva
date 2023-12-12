@@ -23,7 +23,7 @@ public class Menu {
     }
 
     public static String insert_players(int nplayers) {
-
+        nplayers++;
         return UI.readString("Inserte nombre de jugador " + nplayers + ": ");
     }
 

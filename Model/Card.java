@@ -9,7 +9,7 @@ public class Card {
     private String rank;
 
 
-    public Card(int value, String suit,String rank) {
+    public Card(int value, String suit, String rank) {
         this.value = value;
         this.suit = suit;
         this.rank = rank;
@@ -44,7 +44,7 @@ public class Card {
         StringBuilder sb = new StringBuilder();
 
         // Diseño simplificado de la carta con ícono en el medio
-        sb.append("\n┌─────────┐\n");
+        sb.append("┌─────────┐\n");
 
         // Añade el valor y el ícono en el medio según la suit
         if (isNumericValue()) {
@@ -71,7 +71,7 @@ public class Card {
 
     // Método auxiliar para obtener el ícono según la suit
     private String getSuitIcon() {
-        String icon=null;
+        String icon = null;
         switch (suit.toLowerCase()) {
             case "hearts" -> icon = "♥ ";
             case "diamonds" -> icon = "♦ ";
@@ -88,10 +88,11 @@ public class Card {
 
         return icon;
     }
+
     private String getValueLetter(String rank) {
         return switch (rank) {
-            case "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" ->rank;
-            case "J", "Q", "K","A" -> rank+" ";
+            case "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" -> rank;
+            case "J", "Q", "K", "A" -> " " + rank;
             default -> ("Valor inesperado para suit: " + rank);
         };
     }
@@ -101,8 +102,9 @@ public class Card {
         String stringValue = String.valueOf(value);
 
         // Verifica que la cadena no sea nula y tiene una longitud de 2
-        return stringValue != null && stringValue.length() == 2;
+        return stringValue.length() == 2;
     }
+
     public boolean isAce() {
         return "A".equals(suit) || value == 1;
     }

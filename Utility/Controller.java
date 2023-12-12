@@ -49,7 +49,10 @@ public class Controller {
         switch (option) {
             case 1: //mostrar las cartas del jugador
                 System.out.println("*********************************************");
-                System.out.println(player.getName() + " tienes las siguientes cartas: " + Arrays.toString(player.getCards()));
+                System.out.println(player.getName() + " tienes las siguientes cartas: ");
+                for (Card card : player.getCards()) {
+                    System.out.println(card);
+                }
                 System.out.println("*********************************************");
                 break;
             case 2:
@@ -83,6 +86,7 @@ public class Controller {
                 System.out.println("Opción incorrecta");
         }
     }
+
 public  static void create_players(int nplayers){
     if (nplayers <= 1) {
         nplayers = 2;

@@ -21,25 +21,6 @@ public class Player {
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Player{name='").append(name).append("', cards=");
-
-        for (Card card : cards) {
-            sb.append(card).append(", ");
-        }
-
-        // Elimina la coma y el espacio extras al final, si hay cartas
-        if (cards.length > 0) {
-            sb.setLength(sb.length() - 2);
-        }
-
-        sb.append("}");
-
-        return sb.toString();
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;

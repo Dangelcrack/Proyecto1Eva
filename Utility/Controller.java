@@ -13,6 +13,7 @@ import java.util.Objects;
 public class Controller {
 
     private static Player[] players;
+
     public Controller() {
     }
 
@@ -87,29 +88,30 @@ public class Controller {
         }
     }
 
-public  static void create_players(int nplayers){
-    if (nplayers <= 1) {
-        nplayers = 2;
-        players = new Player[nplayers];
+    public static void create_players(int nplayers) {
+        if (nplayers <= 1) {
+            nplayers = 2;
+            players = new Player[nplayers];
 
-        // Lógica para agregar jugadores al juego
-        String playerName = Menu.insert_player();
-        Player player = new Player(playerName);
-        Player IA = Menu.create_ia();
-        players[0] = player;
-        players[1] = IA;
-
-    } else {
-        players = new Player[nplayers];
-
-        // Lógica para agregar jugadores al juego
-        for (int i = 0; i < nplayers; i++) {
-            String playerName = Menu.insert_players(i);
+            // Lógica para agregar jugadores al juego
+            String playerName = Menu.insert_player();
             Player player = new Player(playerName);
-            players[i] = player;
+            Player IA = Menu.create_ia();
+            players[0] = player;
+            players[1] = IA;
+
+        } else {
+            players = new Player[nplayers];
+
+            // Lógica para agregar jugadores al juego
+            for (int i = 0; i < nplayers; i++) {
+                String playerName = Menu.insert_players(i);
+                Player player = new Player(playerName);
+                players[i] = player;
+            }
         }
     }
-}
+
     public static void displayRules() {
         System.out.println("¡Bienvenido al juego de Blackjack!");
         System.out.println("¡Esperamos que disfrutes del juego. ¡Buena suerte!");
@@ -118,6 +120,7 @@ public  static void create_players(int nplayers){
         System.out.println("2. Cada carta numérica vale su valor, las figuras valen 10 y el As vale 11.");
         System.out.println();
     }
+
     public static void play(String string) {
         Player[] players = getPlayers();
 
@@ -139,6 +142,7 @@ public  static void create_players(int nplayers){
         // Devuelve un array vacío si players es nulo
         return Objects.requireNonNullElseGet(players, () -> new Player[0]);
     }
+
     public static Card getCard(String string) {
         Deck deck = new Deck(string);
         if (deck != null) {
@@ -208,6 +212,7 @@ public  static void create_players(int nplayers){
         }
     }
 
+
     public static void displayResults() {
         System.out.println("Resultados finales:");
 
@@ -239,5 +244,6 @@ public  static void create_players(int nplayers){
         // Otras acciones de salida o cierre de la aplicación si es necesario
 
     }
+
 
 }

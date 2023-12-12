@@ -21,6 +21,7 @@ public class UI {
 
         return input;
     }
+
     public static String readDeck(String msg) {
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -45,9 +46,9 @@ public class UI {
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.print(msg);
-            try{
+            try {
                 input = scanner.nextInt();
-            }catch (Exception e){
+            } catch (Exception e) {
                 scanner.next();
             }
             if (input < min || input > max) {

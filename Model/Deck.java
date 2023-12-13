@@ -8,7 +8,7 @@ public class Deck {
     private String type;
     private List<Card> cards;
 
-    public Deck() {
+    private Deck() {
         // Constructor por defecto
     }
 
@@ -33,11 +33,11 @@ public class Deck {
         return type;
     }
 
-    public void setType(String type) {
+    private void setType(String type) {
         this.type = type;
     }
 
-    public void setCards(List<Card> cards) {
+    private void setCards(List<Card> cards) {
         this.cards = cards;
     }
 
@@ -77,6 +77,9 @@ public class Deck {
         for (String suit : suits) {
             for (int rank : ranks) {
                 String s = String.valueOf(rank);
+                if (1==rank) {
+                    rank = 10;
+                }
                 Card card = new Card(rank, suit, s);
                 cards.add(card);
             }

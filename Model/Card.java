@@ -9,6 +9,10 @@ public class Card {
     private String rank;
 
 
+    public Card() {
+        this(0, null, null);
+    }
+
     public Card(int value, String suit, String rank) {
         this.value = value;
         this.suit = suit;
@@ -19,15 +23,15 @@ public class Card {
         return value;
     }
 
-    public void setValue(int value) {
+    private void setValue(int value) {
         this.value = value;
     }
 
-    public String getSuit() {
+    private String getSuit() {
         return suit;
     }
 
-    public void setSuit(String suit) {
+    private void setSuit(String suit) {
         this.suit = suit;
     }
 
@@ -69,7 +73,6 @@ public class Card {
         return sb.toString();
     }
 
-    // Método auxiliar para obtener el ícono según la suit
     private String getSuitIcon() {
         String icon = null;
         switch (suit.toLowerCase()) {
@@ -78,7 +81,7 @@ public class Card {
             case "clubs" -> icon = "♣ ";
             case "spades" -> icon = "♠ ";
             case "swords" -> icon = "⚔ ";
-            case "cups" -> icon = "🍷";
+            case "cups" -> icon = "🍷 ";
             case "coins" -> icon = "🥇";
             case "bastos" -> icon = "🏑";
             default -> {
@@ -91,8 +94,8 @@ public class Card {
 
     private String getValueLetter(String rank) {
         return switch (rank) {
+            case "1", "J", "Q", "K", "A" -> " " + rank;
             case "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" -> rank;
-            case "J", "Q", "K", "A" -> " " + rank;
             default -> ("Valor inesperado para suit: " + rank);
         };
     }
@@ -105,6 +108,9 @@ public class Card {
         return stringValue.length() == 2;
     }
 
+    /**
+     * Método auxiliar para saber si la suit vale A y, por lo tanto, es un ACE y si value == 1 es para la baraja española
+     */
     public boolean isAce() {
         return "A".equals(suit) || value == 1;
     }

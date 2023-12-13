@@ -38,7 +38,7 @@ public class Player {
         return false;
     }
 
-    public void setCards(Card[] cards) {
+    private void setCards(Card[] cards) {
         if (cards != null) {
             this.cards = Arrays.copyOf(cards, cards.length);
         }
@@ -48,7 +48,7 @@ public class Player {
         return Arrays.copyOf(cards, cards.length);
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 

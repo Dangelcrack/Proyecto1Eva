@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static view.Menu.displayRules;
+import static view.Menu.finished;
+
 public class GameController {
 
     private static Player[] players;
@@ -19,7 +22,6 @@ public class GameController {
     public static void startApp(int nplayers, String string) {
         create_players(nplayers);
         displayRules();
-        System.out.println("Comienza la partida...");
         play(string);
         int option = -1;
         Player[] players = getPlayers();
@@ -87,7 +89,7 @@ public class GameController {
         }
     }
 
-    public static void create_players(int nplayers) {
+    private static void create_players(int nplayers) {
         if (nplayers <= 1) {
             nplayers = 2;
             players = new Player[nplayers];
@@ -111,18 +113,10 @@ public class GameController {
         }
     }
 
-    public static void displayRules() {
-        System.out.println("¡Bienvenido al juego de Blackjack!");
-        System.out.println("¡Esperamos que disfrutes del juego. ¡Buena suerte!");
-        System.out.println("Reglas del Blackjack:");
-        System.out.println("1. El objetivo es conseguir una mano con un valor cercano a 21 sin pasarse.");
-        System.out.println("2. Cada carta numérica vale su valor, las figuras valen 10 y el As vale 11.");
-        System.out.println();
-    }
 
-    public static void play(String string) {
+
+    private static void play(String string) {
         Player[] players = getPlayers();
-
         for (Player player : players) {
             if (player != null) {  // Verificar si el jugador no es nulo
                 for (int i = 0; i < 1; i++) {
@@ -133,7 +127,7 @@ public class GameController {
                 System.out.println("Error: Se encontró un jugador nulo.");
             }
         }
-
+        // Todos los jugadores están obligados a recibir una carta.
         System.out.println("Todos los jugadores han recibido 1 carta!");
     }
 
@@ -142,7 +136,7 @@ public class GameController {
         return Objects.requireNonNullElseGet(players, () -> new Player[0]);
     }
 
-    public static Card getCard(String string) {
+    private static Card getCard(String string) {
         Deck deck = new Deck(string);
         if (deck != null) {
             // Verificar si hay cartas en el mazo
@@ -200,7 +194,7 @@ public class GameController {
 
             // Ajustar la puntuación por los ases (si los hay)
             while (numberOfAces > 0 && totalPoints > 21) {
-                totalPoints += 10;
+                totalPoints -= 10;
                 numberOfAces--;
             }
 
@@ -211,38 +205,6 @@ public class GameController {
         }
     }
 
-
-    public static void displayResults() {
-        System.out.println("Resultados finales:");
-
-        // Iterar sobre cada jugador y mostrar su puntuación
-        for (Player player : getPlayers()) {
-            if (player != null) {
-                System.out.println(player.getName() + ": Puntuación - " + calculatePoints(player));
-            }
-        }
-
-        // Identificar al ganador (o ganadores en caso de empate)
-        Player[] winners = calculateWinners();
-        if (winners.length == 1) {
-            System.out.println("¡El ganador es " + winners[0].getName() + "!");
-        } else if (winners.length > 1) {
-            System.out.println("¡Hay un empate! Ganadores:");
-            for (Player winner : winners) {
-                System.out.println(winner.getName());
-            }
-        } else {
-            System.out.println("El juego terminó sin un ganador claro.");
-        }
-    }
-
-    public static void finished() {
-        // Mostrar resultados finales
-        displayResults();
-        System.out.println("Gracias por jugar. ¡Hasta luego!");
-        // Otras acciones de salida o cierre de la aplicación si es necesario
-
-    }
 
 
 }

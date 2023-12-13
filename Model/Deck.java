@@ -77,8 +77,8 @@ public class Deck {
         for (String suit : suits) {
             for (int rank : ranks) {
                 String s = String.valueOf(rank);
-                if (1==rank) {
-                    rank = 10;
+                if (1 == rank) {
+                    rank = 11;
                 }
                 Card card = new Card(rank, suit, s);
                 cards.add(card);

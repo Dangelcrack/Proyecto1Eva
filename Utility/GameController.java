@@ -9,8 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static view.Menu.displayRules;
-import static view.Menu.finished;
+import static view.Menu.*;
 
 public class GameController {
 
@@ -19,7 +18,9 @@ public class GameController {
     public GameController() {
     }
 
-    public static void startApp(int nplayers, String string) {
+    public static void startApp() {
+        String string = create_deck();
+        int nplayers = number_of_players();
         create_players(nplayers);
         displayRules();
         play(string);
@@ -30,6 +31,11 @@ public class GameController {
                 if (!Objects.equals(player.getName(), "IA")) {
                     option = Menu.mainMenu(player);
                     mainController(option, string, player);
+                    int points = (int) calculatePoints(player);
+                    if (points >= 21) {
+                        System.out.println("Te has pasado crack has perdido");
+                        option = 5;
+                    }
                 } else {
                     //calculo los puntos antes de entrar en el loop
                     int points = (int) calculatePoints(player);
@@ -37,6 +43,7 @@ public class GameController {
                         mainController(3, string, player);
                         //actualizo los puntos en el loop porque si no es infinito
                         points = (int) calculatePoints(player);
+
                     }
                     option = 5;
                 }
@@ -50,12 +57,12 @@ public class GameController {
     public static void mainController(int option, String string, Player player) {
         switch (option) {
             case 1: //mostrar las cartas del jugador
-                System.out.println("*********************************************");
+                System.out.println("***************");
                 System.out.println(player.getName() + " tienes las siguientes cartas: ");
                 for (Card card : player.getCards()) {
                     System.out.println(card);
                 }
-                System.out.println("*********************************************");
+                System.out.println("***************");
                 break;
             case 2:
                 float points = calculatePoints(player);
@@ -103,12 +110,24 @@ public class GameController {
 
         } else {
             players = new Player[nplayers];
-
             // Lógica para agregar jugadores al juego
             for (int i = 0; i < nplayers; i++) {
                 String playerName = Menu.insert_players(i);
                 Player player = new Player(playerName);
-                players[i] = player;
+                // Verificar si el nombre del jugador ya existe
+                boolean jugadorExistente = false;
+                for (int j = 0; j < nplayers; j++) {
+                    if (players[j] != null && playerName.equals(players[j].getName())) {
+                        jugadorExistente = true;
+                        System.out.println("¡Ya existe un jugador con ese nombre! Introduce otro nombre.");
+                        i--;  // Decrementa i para repetir la iteración y pedir otro nombre
+                        break;
+                    }
+                }
+
+                if (!jugadorExistente) {
+                    players[i] = player;
+                }
             }
         }
     }
@@ -126,8 +145,6 @@ public class GameController {
                 System.out.println("Error: Se encontró un jugador nulo.");
             }
         }
-        // Todos los jugadores están obligados a recibir una carta.
-        System.out.println("Todos los jugadores han recibido 1 carta!");
     }
 
     public static Player[] getPlayers() {
@@ -150,7 +167,6 @@ public class GameController {
             return null;
         }
     }
-
 
     public static Player[] calculateWinners() {
         List<Player> winners = new ArrayList<>();
@@ -190,19 +206,15 @@ public class GameController {
                     numberOfAces++;
                 }
             }
-
             // Ajustar la puntuación por los ases (si los hay)
             while (numberOfAces > 0 && totalPoints > 21) {
                 totalPoints -= 10;
                 numberOfAces--;
             }
-
             return totalPoints;
         } else {
             System.out.println("Jugador nulo. No se pueden calcular los puntos.");
             return 0.0f;
         }
     }
-
-
 }

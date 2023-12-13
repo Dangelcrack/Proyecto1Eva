@@ -9,13 +9,14 @@ public class UI {
 
         while (true) {
             System.out.print(msg);
-
-            if (scanner.hasNext("[a-zA-Z]+")) {
-                input = scanner.next();
-                break;
+            input = scanner.next();
+            if (!input.matches("[a-zA-Z]+")) {
+                System.out.println("Por favor, solo introduce letras.");
+                scanner.nextLine(); // consume entire line of invalid input
+            } else if ("IA".equals(input)) {
+                System.out.println("Por favor no te llames IA");
             } else {
-                System.out.println("Por favor solo introduce letras.");
-                scanner.next(); // consume invalid input
+                break;
             }
         }
 

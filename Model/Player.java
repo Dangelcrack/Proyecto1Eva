@@ -2,7 +2,6 @@ package Model;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class Player {
     private Card[] cards;
@@ -43,6 +42,7 @@ public class Player {
             this.cards = Arrays.copyOf(cards, cards.length);
         }
     }
+
     /**
      * Devuelve el de cartas según su longitud
      */

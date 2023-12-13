@@ -25,6 +25,7 @@ public class UI {
 
         return input;
     }
+
     /**
      * Comprueba que la baraja introducida es la correcta
      */
@@ -46,6 +47,7 @@ public class UI {
 
         return input;
     }
+
     /**
      * Comprueba que el numero introducido es el correcto y dentro de los rangos
      */

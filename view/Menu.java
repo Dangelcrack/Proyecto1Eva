@@ -36,6 +36,7 @@ public class Menu {
         nplayers++;
         return UI.readString("Inserte nombre de jugador " + nplayers + ": ");
     }
+
     /**
      * Devuelve las normas de juego
      */
@@ -49,6 +50,7 @@ public class Menu {
         // Todos los jugadores están obligados a recibir una carta.
         System.out.println("Todos los jugadores han recibido 1 carta!");
     }
+
     /**
      * Calcula quien es el ganador si es que lo hay
      */
@@ -73,6 +75,7 @@ public class Menu {
             System.out.println("El juego terminó sin un ganador claro.");
         }
     }
+
     /**
      * Crea el jugador IA
      */

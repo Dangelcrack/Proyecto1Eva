@@ -32,7 +32,7 @@ public class GameController {
                     option = Menu.mainMenu(player);
                     mainController(option, string, player);
                     int points = (int) calculatePoints(player);
-                    if (points >= 21) {
+                    if (points > 21) {
                         System.out.println("Te has pasado crack has perdido");
                         option = 5;
                     }
@@ -146,6 +146,7 @@ public class GameController {
             }
         }
     }
+
     /**
      * Devuelve un array vacío si players es nulo, si no pues devuelve los jugadores
      */
@@ -169,6 +170,7 @@ public class GameController {
             return null;
         }
     }
+
     /**
      * Devuelve el ganador o ganadores
      */
@@ -196,6 +198,7 @@ public class GameController {
         // Devolver la lista de ganadores como un array
         return winners.toArray(new Player[0]);
     }
+
     /**
      * Calcula los puntos de cada persona
      */

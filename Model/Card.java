@@ -6,7 +6,7 @@ public class Card {
     private int value;
     // esto es una prueba de guardado
     private String suit;
-    private String rank;
+    private final String rank;
 
 
     public Card() {

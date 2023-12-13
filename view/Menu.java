@@ -36,7 +36,9 @@ public class Menu {
         nplayers++;
         return UI.readString("Inserte nombre de jugador " + nplayers + ": ");
     }
-
+    /**
+     * Devuelve las normas de juego
+     */
     public static void displayRules() {
         System.out.println("\n¡Bienvenido al juego de Blackjack!");
         System.out.println("¡Esperamos que disfrutes del juego. ¡Buena suerte!");
@@ -47,7 +49,9 @@ public class Menu {
         // Todos los jugadores están obligados a recibir una carta.
         System.out.println("Todos los jugadores han recibido 1 carta!");
     }
-
+    /**
+     * Calcula quien es el ganador si es que lo hay
+     */
     public static void displayResults() {
         System.out.println("Resultados finales:");
         // Iterar sobre cada jugador y mostrar su puntuación
@@ -69,7 +73,9 @@ public class Menu {
             System.out.println("El juego terminó sin un ganador claro.");
         }
     }
-
+    /**
+     * Crea el jugador IA
+     */
     public static Player create_ia() {
         String player = "IA";
         System.out.println("Se ha añadido el jugador IA.");

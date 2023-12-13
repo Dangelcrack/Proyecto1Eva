@@ -146,7 +146,9 @@ public class GameController {
             }
         }
     }
-
+    /**
+     * Devuelve un array vacío si players es nulo, si no pues devuelve los jugadores
+     */
     public static Player[] getPlayers() {
         // Devuelve un array vacío si players es nulo
         return Objects.requireNonNullElseGet(players, () -> new Player[0]);
@@ -167,7 +169,9 @@ public class GameController {
             return null;
         }
     }
-
+    /**
+     * Devuelve el ganador o ganadores
+     */
     public static Player[] calculateWinners() {
         List<Player> winners = new ArrayList<>();
         int maxPoints = 0;
@@ -192,7 +196,9 @@ public class GameController {
         // Devolver la lista de ganadores como un array
         return winners.toArray(new Player[0]);
     }
-
+    /**
+     * Calcula los puntos de cada persona
+     */
     public static float calculatePoints(Player player) {
         if (player != null) {
             List<Card> cards = List.of(player.getCards());

@@ -3,6 +3,9 @@ package view;
 import java.util.Scanner;
 
 public class UI {
+    /**
+     * Comprueba que se introducen los carácteres correctos y comprueba que no pueda meter el mismo nombre de otro jugador ni el de la IA.
+     */
     public static String readString(String msg) {
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -22,7 +25,9 @@ public class UI {
 
         return input;
     }
-
+    /**
+     * Comprueba que la baraja introducida es la correcta
+     */
     public static String readDeck(String msg) {
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -41,7 +46,9 @@ public class UI {
 
         return input;
     }
-
+    /**
+     * Comprueba que el numero introducido es el correcto y dentro de los rangos
+     */
     public static int readInt(String msg, int min, int max) {
         int input = 0;
         Scanner scanner = new Scanner(System.in);

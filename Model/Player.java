@@ -43,7 +43,9 @@ public class Player {
             this.cards = Arrays.copyOf(cards, cards.length);
         }
     }
-
+    /**
+     * Devuelve el de cartas según su longitud
+     */
     public Card[] getCards() {
         return Arrays.copyOf(cards, cards.length);
     }

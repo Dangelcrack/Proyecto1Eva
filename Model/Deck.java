@@ -40,7 +40,9 @@ public class Deck {
     private void setCards(List<Card> cards) {
         this.cards = cards;
     }
-
+    /**
+     * Devuelve cartas aleatorias util para darle cartas a los jugadores
+     */
     public void shuffleDeck() {
         Collections.shuffle(cards);
     }

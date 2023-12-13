@@ -114,7 +114,6 @@ public class GameController {
     }
 
 
-
     private static void play(String string) {
         Player[] players = getPlayers();
         for (Player player : players) {
@@ -204,7 +203,6 @@ public class GameController {
             return 0.0f;
         }
     }
-
 
 
 }
